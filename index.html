@@ -214,6 +214,12 @@ h2 { font-family: var(--display); font-weight: 700; font-size: clamp(34px, 4.6vw
         <figcaption>iPhone Duo · the #5 team's radio at the checkered flag, transcribed on the home server</figcaption>
       </figure>
       <div class="quote">
+        <button class="play" id="play" type="button" aria-label="Play the #5 team radio from the last lap">
+          <span class="btn" aria-hidden="true"><svg viewBox="0 0 24 24"><path id="playicon" d="M7 4l14 8-14 8z"/></svg></span>
+          <span class="lbl">Hear it<span class="sub">#5 team radio · last lap · 28 s</span></span>
+          <span class="bar" aria-hidden="true"><i id="playbar"></i></span>
+        </button>
+        <audio id="clip" src="audio/larson-talladega.m4a" preload="none"></audio>
         <div class="line" data-from="0" data-to="14"><div class="who">#5 Larson · spotter <span>last lap</span></div><p>…keep coming through the middle, bottom lane, keep coming, keep coming, want your push, keep coming, keep coming… <mark>yes, yes, yes, yes, hell yeah.</mark></p></div>
         <div class="line" data-from="14" data-to="99"><div class="who">#5 Larson · crew <span>after the flag</span></div><p>Stay with it driver, way to keep your composure, man am I proud of you, did not panic, take the shot.</p></div>
       </div>
@@ -313,5 +319,21 @@ h2 { font-family: var(--display); font-weight: 700; font-size: clamp(34px, 4.6vw
 
   <p class="note"><strong>About this project.</strong> Race Day is a personal, non-commercial project shared only with a few invited friends. It is not affiliated with or endorsed by NASCAR. Screenshots are real: a recorded 2026 Cup race at Charlotte, replayed through the app in Apple's iPad, iPhone and iPhone Duo simulators.</p>
 </main>
+<script>
+(() => {
+  const a = document.getElementById('clip'), b = document.getElementById('play'), icon = document.getElementById('playicon'), bar = document.getElementById('playbar');
+  const lines = [...document.querySelectorAll('.line[data-from]')];
+  const PLAY = 'M7 4l14 8-14 8z', PAUSE = 'M6 4h4v16H6zM14 4h4v16h-4z';
+  b.addEventListener('click', () => a.paused ? a.play() : a.pause());
+  a.addEventListener('play', () => icon.setAttribute('d', PAUSE));
+  a.addEventListener('pause', () => icon.setAttribute('d', PLAY));
+  a.addEventListener('ended', () => { a.currentTime = 0; bar.style.width = 0; lines.forEach(l => l.classList.remove('on')); });
+  a.addEventListener('timeupdate', () => {
+    const t = a.currentTime;
+    bar.style.width = (a.duration ? 100 * t / a.duration : 0) + '%';
+    lines.forEach(l => l.classList.toggle('on', !a.paused && t >= +l.dataset.from && t < +l.dataset.to));
+  });
+})();
+</script>
 </body>
 </html>
