@@ -106,6 +106,14 @@ h2 { font-family: var(--display); font-weight: 700; font-size: clamp(34px, 4.6vw
 .line .who { font-family: var(--display); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; color: var(--muted); display: flex; justify-content: space-between; gap: 12px; }
 .line .who span { font-family: var(--mono); letter-spacing: 0; text-transform: none; }
 .line p { margin: 6px 0 0; font-size: 18px; color: var(--ink); }
+.play { display: flex; align-items: center; gap: 14px; background: var(--panel); border: 1px solid #2a323b; padding: 12px 16px; color: var(--ink); font: inherit; cursor: pointer; text-align: left; width: 100%; }
+.play .btn { flex: none; width: 44px; height: 44px; border-radius: 50%; background: var(--green); display: grid; place-items: center; }
+.play .btn svg { width: 18px; height: 18px; fill: #0b0d10; }
+.play .lbl { font-family: var(--display); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-size: 14px; }
+.play .sub { display: block; font-family: var(--mono); font-size: 12px; color: var(--muted); letter-spacing: 0; text-transform: none; font-weight: 400; margin-top: 2px; }
+.play .bar { flex: 1; height: 4px; background: #2a323b; min-width: 40px; }
+.play .bar i { display: block; height: 100%; width: 0; background: var(--green); }
+.line.on { border-left-color: var(--green); }
 .line p mark { background: none; color: var(--green); font-weight: 600; }
 .moment .after { color: #c9d0d7; max-width: 60ch; margin: 28px 0 0; }
 
@@ -206,8 +214,8 @@ h2 { font-family: var(--display); font-weight: 700; font-size: clamp(34px, 4.6vw
         <figcaption>iPhone Duo · the #5 team's radio at the checkered flag, transcribed on the home server</figcaption>
       </figure>
       <div class="quote">
-        <div class="line"><div class="who">#5 Larson · spotter <span>last lap</span></div><p>…keep coming through the middle, bottom lane, keep coming, keep coming, want your push, keep coming, keep coming… <mark>yes, yes, yes, yes, hell yeah.</mark></p></div>
-        <div class="line"><div class="who">#5 Larson · crew <span>after the flag</span></div><p>Stay with it driver, way to keep your composure, man am I proud of you, did not panic, take the shot.</p></div>
+        <div class="line" data-from="0" data-to="14"><div class="who">#5 Larson · spotter <span>last lap</span></div><p>…keep coming through the middle, bottom lane, keep coming, keep coming, want your push, keep coming, keep coming… <mark>yes, yes, yes, yes, hell yeah.</mark></p></div>
+        <div class="line" data-from="14" data-to="99"><div class="who">#5 Larson · crew <span>after the flag</span></div><p>Stay with it driver, way to keep your composure, man am I proud of you, did not panic, take the shot.</p></div>
       </div>
     </div>
     <p class="after">More than 40 team channels per Cup race are recorded, transcribed on a local GPU, and lined up with the TV delay, so the words appear as you hear them. Lines are tagged (fuel, tires, handling, restarts, battles), and you can tap any line to hear it again. Listen to your two drivers at once, scan whoever is talking, or pick anyone in the field. Radio boost lifts quiet voices, and the radio keeps playing with the screen locked.</p>
@@ -225,11 +233,11 @@ h2 { font-family: var(--display); font-weight: 700; font-size: clamp(34px, 4.6vw
         <li>Works with AirPods and other Bluetooth headsets, and finds the other phone again by itself if you walk out of range.</li>
       </ul>
     </div>
-    <div class="talk" role="img" aria-label="Two phones linked directly by peer-to-peer Wi-Fi with no cell tower or router between them">
-      <div class="phone"><b>You</b><small>#5 radio in your ears</small><div class="ptt">TALK</div></div>
-      <div class="link"><span>peer-to-peer Wi-Fi</span><span class="b">no cell signal needed</span></div>
-      <div class="phone"><b>Your friend</b><small>#12 radio in theirs</small><div class="ptt" style="background:var(--blue)">TALK</div></div>
-    </div>
+    <figure class="shot pair">
+      <img src="img/duo-intercom.jpg" alt="Race Day on an iPhone Duo with the intercom on: the talk button in the side bar is red while this person talks" loading="lazy" width="1000" height="1455">
+      <img src="img/phone-intercom.jpg" alt="Race Day on an iPhone with the intercom on: the talk button is green and says Sam talking while the friend talks" loading="lazy" width="700" height="1521">
+      <figcaption style="grid-column:1/-1">Talking on the Duo (red) · hearing it on the friend's iPhone (green, "Sam talking")</figcaption>
+    </figure>
   </section>
 
   <section class="feature flip" style="--c: var(--violet)">
@@ -285,7 +293,7 @@ h2 { font-family: var(--display); font-weight: 700; font-size: clamp(34px, 4.6vw
         <li>Practice and qualifying turn the tower into a timing sheet by best lap, with long-run pace.</li>
       </ul>
     </div>
-    <figure class="shot" style="width:min(100%,620px);display:grid;gap:16px"><img class="duo" src="img/duo-land-track.jpg" alt="Track page on an iPhone Duo held sideways: the oval with every car placed, Blaney and Heim labeled, beside their follow cards" loading="lazy" width="1400" height="962"><div class="shot pair" style="width:100%"><img src="img/duo-laptop.jpg" alt="iPhone Duo half open like a laptop with the radio deck below the fold" loading="lazy" width="1000" height="1455"><img src="img/phone-strategy.jpg" alt="Strategy page on iPhone" loading="lazy" width="700" height="1521"></div><figcaption>Duo on its side · Duo half open · iPhone</figcaption></figure>
+    <figure class="shot" style="width:min(100%,620px);display:grid;gap:16px"><img class="duo" src="img/duo-land-track.jpg" alt="Track page on an iPhone Duo held sideways: the oval with every car placed, Blaney and Heim labeled, beside their follow cards" loading="lazy" width="1400" height="962"><div class="shot pair" style="width:100%"><img src="img/phone-race.jpg" alt="Race page on iPhone" loading="lazy" width="700" height="1521"><img src="img/phone-strategy.jpg" alt="Strategy page on iPhone" loading="lazy" width="700" height="1521"></div><figcaption>Duo on its side · iPhone</figcaption></figure>
   </section>
 
   <section class="how">
