@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Race Day: a live NASCAR companion for iPhone Duo, iPad and iPhone.">
+<title>Race Day</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;700;800&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: a scoring-pylon page. A flag-colored header band, then alternating feature rows of real screenshots, all on the app's own graphite. */
+:root {
+  --ground: #0d0f12;      /* the app's graphite */
+  --panel: #161a1f;
+  --line: #262c33;
+  --ink: #eef1f4;
+  --muted: #8d97a3;
+  --green: #2fcf6a;       /* green flag */
+  --yellow: #f5c518;      /* caution */
+  --blue: #3fa9f5;        /* favorite one */
+  --violet: #b77cf2;      /* favorite two */
+  --display: "Saira Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --body: "Public Sans", system-ui, -apple-system, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  color-scheme: dark;
+}
+body { background: var(--ground); color: var(--ink); font: 400 17px/1.6 var(--body); margin: 0; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--ground); }
+.wrap { max-width: 1180px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+img { display: block; max-width: 100%; height: auto; }
+a { color: var(--blue); }
+:focus-visible { outline: 2px solid var(--yellow); outline-offset: 3px; }
+
+/* Header band: flag block + lap counter, as the app opens */
+.band { display: grid; grid-template-columns: auto 1fr; border-bottom: 3px solid var(--green); background: linear-gradient(90deg, #12251a, var(--ground) 60%); }
+.flag { background: var(--green); color: #07140c; padding: 18px 28px; font-family: var(--display); }
+.flag b { display: block; font-size: 34px; font-weight: 800; letter-spacing: .04em; line-height: 1; }
+.flag span { font-size: 15px; font-weight: 500; }
+.lap { display: flex; gap: 28px; align-items: end; padding: 14px 24px; font-family: var(--display); }
+.lap small { display: block; color: var(--muted); font-size: 13px; letter-spacing: .12em; }
+.lap strong { font-size: 40px; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; }
+.lap em { font-style: normal; color: var(--muted); font-size: 20px; }
+
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 48px; align-items: center; padding-block: 64px 40px; }
+.eyebrow { font-family: var(--display); font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--green); font-size: 15px; margin: 0 0 10px; }
+h1 { font-family: var(--display); font-weight: 800; font-size: clamp(64px, 11vw, 132px); line-height: .86; margin: 0 0 22px; letter-spacing: -.01em; text-transform: uppercase; }
+.lede { font-size: 20px; color: var(--ink); max-width: 34ch; margin: 0 0 22px; text-wrap: pretty; }
+.devices { position: relative; justify-self: center; width: min(100%, 500px); }
+.devices .tab { border-radius: 22px; border: 1px solid var(--line); box-shadow: 0 30px 80px rgba(0,0,0,.6); }
+.devices .ph { position: absolute; right: -10px; bottom: -36px; width: 30%; border-radius: 28px; border: 6px solid #1d2228; box-shadow: 0 20px 50px rgba(0,0,0,.7); }
+
+.facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-block: 48px 0; }
+.facts div { padding: 20px 18px; border-left: 1px solid var(--line); }
+.facts div:first-child { border-left: 0; }
+.facts b { display: block; font-family: var(--display); font-size: 40px; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; }
+.facts span { color: var(--muted); font-size: 14px; }
+
+section.feature { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); gap: 56px; align-items: center; padding-block: 72px; border-bottom: 1px solid var(--line); }
+section.feature.flip > .shot { order: -1; }
+.shot { margin: 0; justify-self: center; width: min(100%, 560px); }
+.shot img { border-radius: 18px; border: 1px solid var(--line); width: 100%; }
+.shot.pair { width: min(100%, 620px); display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: end; }
+.shot.pair img { border-radius: 26px; }
+.shot figcaption { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-top: 10px; }
+h2 { font-family: var(--display); font-weight: 700; font-size: clamp(34px, 4.6vw, 52px); line-height: 1; margin: 0 0 16px; text-transform: uppercase; text-wrap: balance; }
+.tag { display: inline-block; font-family: var(--display); font-weight: 700; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; padding: 3px 10px; border-left: 4px solid var(--c, var(--green)); background: var(--panel); margin-bottom: 14px; }
+.feature p { color: #c9d0d7; max-width: 52ch; margin: 0 0 14px; }
+.feature ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; max-width: 52ch; }
+.feature li { padding-left: 18px; position: relative; color: #c9d0d7; }
+.feature li::before { content: ""; position: absolute; left: 0; top: .62em; width: 8px; height: 3px; background: var(--c, var(--green)); }
+
+.how { padding-block: 72px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; }
+.pipe { display: grid; gap: 10px; font-family: var(--mono); font-size: 14px; }
+.pipe div { background: var(--panel); border: 1px solid var(--line); padding: 12px 16px; display: flex; justify-content: space-between; gap: 12px; }
+.pipe div span { color: var(--muted); text-align: right; }
+.note { padding-block: 40px 72px; color: var(--muted); font-size: 15px; max-width: 72ch; }
+.note strong { color: var(--ink); }
+
+@media (max-width: 860px) {
+  .hero, section.feature, .how { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  section.feature.flip > .shot { order: 0; }
+  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .facts div:nth-child(3) { border-left: 0; }
+  .facts div:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .devices .ph { right: 0; bottom: -24px; }
+}
+@media (max-width: 520px) {
+  .band { grid-template-columns: minmax(0, 1fr); }
+  .lap { gap: 18px; }
+  .shot.pair { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Hero: the Duo on its side, wide */
+.hero.wide { grid-template-columns: minmax(0, .8fr) minmax(0, 1.4fr); }
+.duo { border-radius: 26px; border: 8px solid #1d2228; box-shadow: 0 30px 80px rgba(0,0,0,.6); }
+
+/* The finish: a full-width moment */
+.moment { padding-block: 80px; border-bottom: 1px solid var(--line); }
+.moment .head { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px; align-items: end; margin-bottom: 32px; }
+.checker { width: 72px; height: 48px; background: conic-gradient(var(--ink) 25%, var(--ground) 0 50%, var(--ink) 0 75%, var(--ground) 0) 0 0 / 16px 16px; border: 1px solid var(--line); }
+.moment .grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 40px; align-items: start; }
+.moment .grid img { border-radius: 22px; border: 8px solid #1d2228; }
+.quote { display: grid; gap: 18px; }
+.line { background: var(--panel); border-left: 4px solid var(--blue); padding: 16px 18px; }
+.line .who { font-family: var(--display); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; color: var(--muted); display: flex; justify-content: space-between; gap: 12px; }
+.line .who span { font-family: var(--mono); letter-spacing: 0; text-transform: none; }
+.line p { margin: 6px 0 0; font-size: 18px; color: var(--ink); }
+.line p mark { background: none; color: var(--green); font-weight: 600; }
+.moment .after { color: #c9d0d7; max-width: 60ch; margin: 28px 0 0; }
+
+/* Intercom diagram */
+.talk { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, 1fr); align-items: center; gap: 0; }
+.phone { background: var(--panel); border: 1px solid var(--line); border-radius: 26px; padding: 22px 18px; text-align: center; }
+.phone b { display: block; font-family: var(--display); font-size: 22px; font-weight: 700; text-transform: uppercase; }
+.phone small { color: var(--muted); font-size: 13px; display: block; margin-top: 4px; }
+.ptt { width: 64px; height: 64px; border-radius: 50%; margin: 16px auto 0; background: var(--green); display: grid; place-items: center; color: #07140c; font-family: var(--display); font-weight: 800; font-size: 13px; letter-spacing: .08em; }
+.link { position: relative; height: 4px; background: repeating-linear-gradient(90deg, var(--green) 0 10px, transparent 10px 18px); margin-inline: -1px; }
+.link span { position: absolute; left: 50%; top: -34px; transform: translateX(-50%); white-space: nowrap; font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.link span.b { top: 14px; }
+@media (prefers-reduced-motion: no-preference) {
+  .link { background-size: 18px 4px; animation: flow 1s linear infinite; }
+  @keyframes flow { to { background-position: 18px 0; } }
+}
+@media (max-width: 860px) {
+  .moment .grid, .moment .head { grid-template-columns: minmax(0, 1fr); }
+  .checker { display: none; }
+}
+@media (max-width: 520px) {
+  .talk { grid-template-columns: minmax(0, 1fr); gap: 56px; }
+  .link { height: 40px; width: 4px; justify-self: center; background: repeating-linear-gradient(180deg, var(--green) 0 10px, transparent 10px 18px); animation: none; }
+  .link span { top: 10px; left: 16px; transform: none; } .link span.b { display: none; }
+}
+</style>
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}*,*::before,*::after{box-sizing:border-box}</style>
+</head>
+<body>
+
+<div class="band">
+  <div class="flag"><b>GREEN</b><span>Race Day</span></div>
+  <div class="lap">
+    <div><small>LAP</small><strong>183</strong><em> /267</em></div>
+    <div><small>TO GO</small><strong>85</strong></div>
+  </div>
+</div>
+
+<main class="wrap">
+  <header class="hero wide">
+    <div>
+      <p class="eyebrow">For iPhone Duo, iPad and iPhone</p>
+      <h1>Race Day</h1>
+      <p class="lede">A live NASCAR companion for the second screen. Timing and scoring, your drivers' cockpits, every team's radio transcribed as it's spoken, strategy and a live track map, all in step with the TV.</p>
+    </div>
+    <img class="duo" src="img/duo-land-race.jpg" alt="Race Day on an iPhone Duo held sideways: green flag, lap 183 of 267, the timing tower beside cards for Ryan Blaney in P3 and Corey Heim in P14 with the gaps to the cars around them" width="1400" height="962">
+  </header>
+
+  <div class="facts">
+    <div><b>4</b><span>series: Cup, O'Reilly, Trucks, ARCA</span></div>
+    <div><b>40+</b><span>driver radio channels per Cup race</span></div>
+    <div><b>~2 s</b><span>old on arrival: race state from NASCAR's fast channel</span></div>
+    <div><b>0</b><span>bars of signal needed for the at-track intercom</span></div>
+  </div>
+
+  <section class="feature" style="--c: var(--green)">
+    <div>
+      <span class="tag">Race</span>
+      <h2>The scoring pylon, rebuilt for a tablet</h2>
+      <p>The running order owns the screen and never moves around. Everything a fan checks between corners is one glance away.</p>
+      <ul>
+        <li>Gap to the leader and the car ahead, lit blue when it's under half a second: a battle.</li>
+        <li>Last lap, 5-lap pace, laps on tires, stops and laps led.</li>
+        <li>Places gained since the green, with the manufacturer's color on every car.</li>
+        <li>Race control's latest call under the flag, and the real white flag from the lap count.</li>
+      </ul>
+    </div>
+    <figure class="shot"><img src="img/ipad-race.jpg" alt="Full timing tower on iPad" loading="lazy" width="1240" height="1653"><figcaption>iPad Pro 13" · 2026 Bank of America 400, lap 183</figcaption></figure>
+  </section>
+
+  <section class="feature flip" style="--c: var(--blue)">
+    <div>
+      <span class="tag">My drivers</span>
+      <h2>Ride along with your favorites</h2>
+      <p>Each favorite gets a card that reads like a crew chief's screen.</p>
+      <ul>
+        <li>Live cockpit from car telemetry: speed, gear, throttle and brake.</li>
+        <li>The cars ahead and behind with the gaps either way.</li>
+        <li>Laps on tires against the usual stint, fuel laps left, and the pit window spelled out.</li>
+        <li>Favorites are tinted through every page, so you never lose them in a 38-car field.</li>
+      </ul>
+    </div>
+    <figure class="shot"><img src="img/duo-race.jpg" alt="Two favorite-driver cards with speed, gear, throttle and brake bars, tires and fuel" loading="lazy" width="1000" height="1455"><figcaption>iPhone Duo, folded · tabs in the side strip</figcaption></figure>
+  </section>
+
+  <section class="moment" id="talladega">
+    <div class="head">
+      <div>
+        <span class="tag" style="--c: var(--ink)">Radio transcripts</span>
+        <h2>Hear the win. Read it too.</h2>
+        <p style="color:#c9d0d7;max-width:60ch;margin:0">Talladega, October 25, 2026. Kyle Larson comes from seventh off the last corner to win the YellaWood 500, his first superspeedway win. Race Day had his radio open the whole way, and every word of the spotter's call was on screen as it happened.</p>
+      </div>
+      <div class="checker" aria-hidden="true"></div>
+    </div>
+    <div class="grid">
+      <figure class="shot" style="width:100%;margin:0">
+        <img src="img/duo-land-radio.jpg" alt="The radio panel on an iPhone Duo held sideways, on the #5 Larson channel, showing the spotter's final-lap call and the crew's message after the win" loading="lazy" width="1400" height="962">
+        <figcaption>iPhone Duo · the #5 team's radio at the checkered flag, transcribed on the home server</figcaption>
+      </figure>
+      <div class="quote">
+        <div class="line"><div class="who">#5 Larson · spotter <span>last lap</span></div><p>…keep coming through the middle, bottom lane, keep coming, keep coming, want your push, keep coming, keep coming… <mark>yes, yes, yes, yes, hell yeah.</mark></p></div>
+        <div class="line"><div class="who">#5 Larson · crew <span>after the flag</span></div><p>Stay with it driver, way to keep your composure, man am I proud of you, did not panic, take the shot.</p></div>
+      </div>
+    </div>
+    <p class="after">More than 40 team channels per Cup race are recorded, transcribed on a local GPU, and lined up with the TV delay, so the words appear as you hear them. Lines are tagged (fuel, tires, handling, restarts, battles), and you can tap any line to hear it again. Listen to your two drivers at once, scan whoever is talking, or pick anyone in the field. Radio boost lifts quiet voices, and the radio keeps playing with the screen locked.</p>
+  </section>
+
+  <section class="feature" style="--c: var(--green)">
+    <div>
+      <span class="tag">Intercom</span>
+      <h2>Talk to your friend at the track</h2>
+      <p>At the track, cell service is gone and the cars are loud. Race Day turns two phones into a headset intercom, so you and your friend can talk over the race while each of you hears your own team radio.</p>
+      <ul>
+        <li>Phone to phone over Apple's peer-to-peer Wi-Fi, the same link AirDrop uses. No cell signal and no Wi-Fi network needed.</li>
+        <li>Hold to talk, or leave the mic open.</li>
+        <li>The radio dips while your friend is talking, then comes back.</li>
+        <li>Works with AirPods and other Bluetooth headsets, and finds the other phone again by itself if you walk out of range.</li>
+      </ul>
+    </div>
+    <div class="talk" role="img" aria-label="Two phones linked directly by peer-to-peer Wi-Fi with no cell tower or router between them">
+      <div class="phone"><b>You</b><small>#5 radio in your ears</small><div class="ptt">TALK</div></div>
+      <div class="link"><span>peer-to-peer Wi-Fi</span><span class="b">no cell signal needed</span></div>
+      <div class="phone"><b>Your friend</b><small>#12 radio in theirs</small><div class="ptt" style="background:var(--blue)">TALK</div></div>
+    </div>
+  </section>
+
+  <section class="feature flip" style="--c: var(--violet)">
+    <div>
+      <span class="tag">Strategy</span>
+      <h2>See the race the pit box sees</h2>
+      <ul>
+        <li>Your drivers' position every lap, with cautions shaded.</li>
+        <li>A pit-window board for the whole field: laps on tires against the usual stint.</li>
+        <li>Recent stops: time in the box, tires taken, places gained or lost.</li>
+        <li>Standings as they would stand now, with points earned today.</li>
+      </ul>
+    </div>
+    <figure class="shot"><img src="img/ipad-strategy.jpg" alt="Strategy page" loading="lazy" width="1240" height="1653"><figcaption>Strategy page</figcaption></figure>
+  </section>
+
+  <section class="feature" style="--c: var(--green)">
+    <div>
+      <span class="tag">Track</span>
+      <h2>A live map placed by GPS</h2>
+      <ul>
+        <li>Every car on the real track outline, positioned from its GPS.</li>
+        <li>Your drivers labeled in their colors, the leader ringed in gold.</li>
+        <li>Tap any car to follow it, with its gaps and cockpit.</li>
+        <li>Closest battles on track, tightest first.</li>
+      </ul>
+    </div>
+    <figure class="shot"><img src="img/ipad-track.jpg" alt="Track map page" loading="lazy" width="1240" height="1653"><figcaption>Track page</figcaption></figure>
+  </section>
+
+  <section class="feature flip" style="--c: var(--blue)">
+    <div>
+      <span class="tag">Compare</span>
+      <h2>Any two drivers, head to head</h2>
+      <ul>
+        <li>The gap between them and both positions through the race.</li>
+        <li>Side-by-side stats with the better number lit.</li>
+        <li>Both cockpits live.</li>
+      </ul>
+    </div>
+    <figure class="shot"><img src="img/ipad-compare.jpg" alt="Compare page" loading="lazy" width="1240" height="1653"><figcaption>Compare page</figcaption></figure>
+  </section>
+
+  <section class="feature" style="--c: var(--yellow)">
+    <div>
+      <span class="tag">Every screen</span>
+      <h2>Designed for each posture</h2>
+      <p>The same race fits an iPad, an iPhone, and every way an iPhone Duo can fold.</p>
+      <ul>
+        <li>Sideways: the timing tower and your drivers side by side, page tabs in the strip beside the clock.</li>
+        <li>Half open like a laptop: the page on top, a control deck with the radio below the fold.</li>
+        <li>Open on its side like a book: the race on the left page, details on the right.</li>
+        <li>Practice and qualifying turn the tower into a timing sheet by best lap, with long-run pace.</li>
+      </ul>
+    </div>
+    <figure class="shot" style="width:min(100%,620px);display:grid;gap:16px"><img class="duo" src="img/duo-land-track.jpg" alt="Track page on an iPhone Duo held sideways: the oval with every car placed, Blaney and Heim labeled, beside their follow cards" loading="lazy" width="1400" height="962"><div class="shot pair" style="width:100%"><img src="img/duo-laptop.jpg" alt="iPhone Duo half open like a laptop with the radio deck below the fold" loading="lazy" width="1000" height="1455"><img src="img/phone-strategy.jpg" alt="Strategy page on iPhone" loading="lazy" width="700" height="1521"></div><figcaption>Duo on its side · Duo half open · iPhone</figcaption></figure>
+  </section>
+
+  <section class="how">
+    <div>
+      <p class="eyebrow">How it works</p>
+      <h2>A home race server does the heavy lifting</h2>
+      <p style="color:#c9d0d7">A small server records every session in full: timing, telemetry, pit stops and every radio channel. It transcribes the radio on a local GPU and sends the apps one clean, delayed stream that matches the TV. Any race it has recorded can be replayed later, radio included.</p>
+    </div>
+    <div class="pipe">
+      <div>Timing and scoring <span>every ~15 s, ~2 s old</span></div>
+      <div>Car telemetry and GPS <span>speed, gear, throttle, brake</span></div>
+      <div>Driver radio <span>40+ channels, transcribed</span></div>
+      <div>Delay buffer <span>matched to the TV</span></div>
+      <div>iPad · iPhone · Duo <span>one stream, every screen</span></div>
+    </div>
+  </section>
+
+  <p class="note"><strong>About this project.</strong> Race Day is a personal, non-commercial project shared only with a few invited friends. It is not affiliated with or endorsed by NASCAR. Screenshots are real: a recorded 2026 Cup race at Charlotte, replayed through the app in Apple's iPad, iPhone and iPhone Duo simulators.</p>
+</main>
+</body>
+</html>
