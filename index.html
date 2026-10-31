@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Race Day: a live NASCAR companion for iPhone Duo, iPad and iPhone.">
+<meta name="description" content="Race Day: a live race companion for iPhone Duo, iPad and iPhone. NASCAR and Formula 1.">
+<link rel="icon" href="img/icon.png">
 <title>Race Day</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,7 +49,8 @@ p { margin: 0 0 14px; }
 
 /* Hero */
 .hero { display: grid; grid-template-columns: minmax(0, .82fr) minmax(0, 1.4fr); gap: 44px; align-items: center; padding-block: 56px 64px; }
-.by { font-family: var(--mono); font-size: 13px; color: var(--muted); margin: 0 0 14px; }
+.by { font-family: var(--mono); font-size: 13px; color: var(--muted); margin: 0 0 14px; display: flex; align-items: center; gap: 12px; }
+.by .icon { width: 48px; height: 48px; border-radius: 11px; }
 h1 { font-family: var(--display); font-weight: 800; font-size: clamp(64px, 10vw, 128px); line-height: .86; margin: 0 0 22px; text-transform: uppercase; }
 .lede { font-size: 20px; max-width: 32ch; text-wrap: pretty; }
 .kit { font-family: var(--mono); font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 12px; margin-top: 22px; }
@@ -82,6 +84,17 @@ h3 { font-family: var(--display); font-weight: 700; font-size: 22px; text-transf
 .playing .line.on { opacity: 1; }
 .moment .after { color: var(--soft); max-width: 64ch; margin-top: 34px; }
 .fine { font-size: 14px; color: var(--muted); }
+
+/* home, f1 */
+.home { padding-block: 64px; }
+.home .top { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 48px; align-items: center; }
+.home p, .f1 p { color: var(--soft); max-width: 56ch; }
+.home .row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.3fr); gap: 22px; margin-top: 36px; align-items: start; }
+.home .row img, .f1 .phones img { border-radius: 24px; border: 5px solid #1d2228; }
+.home .row dl.cols { margin-top: 0; }
+.f1 { padding-block: 64px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; }
+.f1 .phones { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; max-width: 520px; margin: 0; }
+.f1 .phones .cap { grid-column: 1 / -1; margin-top: 2px; }
 
 /* tower */
 .tower { padding-block: 64px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 56px; align-items: center; }
@@ -141,7 +154,9 @@ dl.cols dd { margin: 0; color: var(--soft); }
 .note strong { color: var(--ink); }
 
 @media (max-width: 860px) {
-  .hero, .moment .grid, .tower, .intercom, .how { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .hero, .moment .grid, .tower, .intercom, .how, .home .top, .f1 { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .home .row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .home .row dl { grid-column: 1 / -1; }
   .hero { padding-top: 36px; }
   .stack { padding-right: 0; margin-bottom: 30px; }
   .stack .over { width: 42%; right: -4px; }
@@ -175,21 +190,21 @@ dl.cols dd { margin: 0; color: var(--soft); }
 <div class="band" id="band" aria-hidden="true">
   <div class="flag" id="flag"><b id="fword">GREEN</b><span id="fsub">Race Day</span></div>
   <div class="where">
-    <div><small id="l1">LAP</small><strong id="v1">183</strong><em id="e1"> /267</em></div>
-    <div><small id="l2">TO GO</small><strong id="v2">85</strong></div>
+    <div><small id="l1">LAP</small><strong id="v1">184</strong><em id="e1"> /267</em></div>
+    <div><small id="l2">TO GO</small><strong id="v2">84</strong></div>
     <div class="opt"><small id="l3">RACE</small><strong id="v3" style="font-size:20px">Bank of America 400</strong></div>
   </div>
 </div>
 
 <main class="wrap">
-  <header class="hero" data-flag="green" data-l1="LAP" data-v1="183" data-e1=" /267" data-l2="TO GO" data-v2="85" data-l3="RACE" data-v3="Bank of America 400">
+  <header class="hero" data-flag="green" data-l1="LAP" data-v1="184" data-e1=" /267" data-l2="TO GO" data-v2="84" data-l3="RACE" data-v3="Bank of America 400">
     <div>
-      <p class="by">A side project by Josh Ramey</p>
+      <p class="by"><img class="icon" src="img/icon.png" alt="" width="48" height="48">A side project by Josh Ramey</p>
       <h1>Race Day</h1>
       <p class="lede">I built Race Day to watch NASCAR with. It sits next to the TV and shows the whole field, what my drivers' cars are doing, and every team's radio as text, delayed so it lines up with the broadcast.</p>
-      <p class="kit">iPhone Duo · iPad · iPhone<br>Cup, O'Reilly Auto Parts, Craftsman Truck and ARCA Menards</p>
+      <p class="kit">iPhone Duo · iPad · iPhone<br>Cup, O'Reilly Auto Parts, Craftsman Truck, ARCA Menards and Formula 1</p>
     </div>
-    <img class="duo" src="img/duo-land-race.jpg" alt="Race Day on an iPhone Duo held sideways: green flag, lap 183 of 267, the timing tower beside cards for Ryan Blaney in P3 and Corey Heim in P14 with the gaps to the cars around them" width="1400" height="962">
+    <img class="duo" src="img/duo-land-race.jpg" alt="Race Day on an iPhone Duo opened flat and held sideways: green flag, lap 184 of 267, the timing tower with car badges beside cards for Kyle Larson in P4 and Ryan Blaney in P3 with the gaps to the cars around them" width="1400" height="985">
   </header>
 
   <section class="moment chapter" id="talladega" data-flag="checkered" data-l1="LAP" data-v1="189" data-e1=" /189" data-l2="WINNER" data-v2="#5" data-l3="RACE" data-v3="YellaWood 500">
@@ -214,10 +229,32 @@ dl.cols dd { margin: 0; color: var(--soft); }
         <figcaption class="cap">The radio panel on the Duo, replayed from my server after the race</figcaption>
       </figure>
     </div>
-    <p class="after">Every Cup team has its own channel, more than 40 with the officials. My server transcribes them on a GPU at home and holds each line back by the same delay as the TV. Lines get tagged (fuel, tires, handling, restarts), and tapping one plays it again. You can listen to two drivers at once, or let it scan to whoever's talking. It keeps playing with the phone locked.</p>
+    <p class="after">Every Cup team has its own channel, more than 40 with the officials. My server transcribes them on a Mac at home and holds each line back by the same delay as the TV. Lines get tagged (fuel, tires, handling, restarts), and tapping one plays it again. You can listen to two drivers at once, or let it scan to whoever's talking. It keeps playing with the phone locked.</p>
   </section>
 
-  <section class="tower chapter" data-flag="green" data-l1="LAP" data-v1="183" data-e1=" /267" data-l2="TO GO" data-v2="85" data-l3="RACE" data-v3="Bank of America 400">
+  <section class="home chapter" id="home" data-flag="green" data-sub="Home" data-l1="NEXT" data-v1="Qualifying" data-e1="" data-l2="IN" data-v2="10h 18m" data-l3="TRACK" data-v3="Martinsville">
+    <div class="top">
+      <div>
+        <h2>Home: what's on, what's next, where everyone stands</h2>
+        <p>The app opens on Home now. Across the top is a row of chips with each series' own logo: Cup, O'Reilly, Trucks, ARCA and F1. Pick one and it fills with that series' colour and everything below follows it.</p>
+        <p>The band at the top counts down to the next session. For 12 hours after a race it shows the winner instead, with a button to replay it. When something is on, it's a card at the top: one tap and you're in the race. Behind it all are light streaks, like a night race under the lights, tinted to match the chip.</p>
+      </div>
+      <img class="duo" src="img/duo-land-home.jpg" alt="Home on an iPhone Duo opened flat and held sideways: the Cup chip picked and filled gold, next up Cup qualifying at Martinsville in 10 hours 18 minutes, the Cup schedule on the left page and the Cup standings on the right" loading="lazy" width="1400" height="985">
+    </div>
+    <div class="row">
+      <img src="img/phone-home.jpg" alt="Home on iPhone with all five series: F1 practice next in Mexico City, then the day's sessions for Cup, ARCA and O'Reilly with local times" loading="lazy" width="700" height="1522">
+      <img src="img/phone-standings.jpg" alt="Cup standings after the YellaWood 500 on iPhone: Kyle Larson first on 2,441 points, each driver with their car badge, wins and gap" loading="lazy" width="700" height="1522">
+      <dl class="cols">
+        <dt>Schedule</dt><dd>Every session for all five series in one list, in my time zone with the track's local time beside it. A moved start shows the old time struck through.</dd>
+        <dt>Standings</dt><dd>Points for each NASCAR series with car badges and wins. For F1, drivers and constructors.</dd>
+        <dt>Replays</dt><dd>Races I've saved, each with its result: winner, laps led, cautions, lead changes.</dd>
+        <dt>Badges</dt><dd>NASCAR's own car-number art, cached on my server so replays work offline.</dd>
+      </dl>
+    </div>
+    <p class="cap">Duo opened flat with Cup picked, then Home and the Cup standings on iPhone · October 31, 2026</p>
+  </section>
+
+  <section class="tower chapter" data-flag="green" data-l1="LAP" data-v1="184" data-e1=" /267" data-l2="TO GO" data-v2="84" data-l3="RACE" data-v3="Bank of America 400">
     <div>
       <h2>The running order, and my two drivers</h2>
       <p style="color:var(--soft)">The running order fills most of the screen and stays put. The numbers I keep checking during a run sit right next to each car. The two drivers I follow each get a card with what their car is doing right now, taken from its telemetry.</p>
@@ -225,46 +262,63 @@ dl.cols dd { margin: 0; color: var(--soft); }
         <dt>Gaps</dt><dd>To the leader and to the car ahead. Under half a second it turns blue, so battles stand out.</dd>
         <dt>Pace</dt><dd>Last lap, average of the last five, laps on tires, stops, laps led.</dd>
         <dt>Cockpit</dt><dd>Speed, gear, throttle and brake for each of my drivers, plus fuel laps left and the pit window.</dd>
+        <dt>Lock Screen</dt><dd>A Live Activity with the flag, the lap and where my drivers are, updated while the app or the radio is running.</dd>
         <dt>Flag</dt><dd>Race control's latest message under the flag, and the white flag when the lap count says one to go.</dd>
       </dl>
     </div>
     <div class="stack">
-      <img class="ipad" src="img/ipad-race.jpg" alt="Full timing tower on iPad at lap 183: position, car, driver, gaps, last lap, 5-lap pace, tires and stops for the whole field" loading="lazy" width="1240" height="1653">
-      <img class="over" src="img/duo-race.jpg" alt="iPhone Duo folded: cards for Blaney and Heim with speed, gear, throttle and brake bars, tires and fuel" loading="lazy" width="1000" height="1455">
+      <img class="ipad" src="img/ipad-race.jpg" alt="Full timing tower on iPad at lap 184: position, places gained, car badge, driver, gaps, last lap, 5-lap pace, tires, stops and laps led for the whole field, under cards for Larson and Blaney" loading="lazy" width="1240" height="1653">
+      <img class="over" src="img/duo-race.jpg" alt="iPhone Duo folded: cards for Larson and Blaney with the cars ahead and behind, tires and stops, above the running order, with the app's controls in the strip beside the clock" loading="lazy" width="1000" height="1455">
     </div>
-    <p class="cap">iPad and folded Duo · Bank of America 400 at Charlotte, laps 182 to 183</p>
+    <p class="cap">iPad and folded Duo · Bank of America 400 at Charlotte, lap 184</p>
   </section>
 
-  <section class="strip chapter" data-flag="green" data-l1="LAP" data-v1="183" data-e1=" /267" data-l2="TO GO" data-v2="85" data-l3="RACE" data-v3="Bank of America 400">
+  <section class="strip chapter" data-flag="green" data-l1="LAP" data-v1="184" data-e1=" /267" data-l2="TO GO" data-v2="84" data-l3="RACE" data-v3="Bank of America 400">
     <h2>Strategy, Track and Compare</h2>
     <div class="row">
-      <figure style="margin:0"><img src="img/ipad-strategy.jpg" alt="Strategy page: position chart for Blaney and Heim with cautions shaded, above the recent pit stops" loading="lazy" width="1240" height="1653"><h3 style="margin-top:14px">Strategy</h3><p>Where my drivers ran every lap with cautions shaded, who's due to pit, and what each stop gained or lost.</p></figure>
-      <figure style="margin:0" class="track"><img src="img/ipad-track.jpg" alt="Track page: every car on the Charlotte outline placed by GPS, Blaney and Heim labeled, the leader ringed" loading="lazy" width="1240" height="1653"><h3 style="margin-top:14px">Track</h3><p>Every car on the real track outline, placed from its GPS. Tap a car to follow it.</p></figure>
-      <figure style="margin:0"><img src="img/ipad-compare.jpg" alt="Compare page: the gap between two drivers and both positions through the race, with their stats side by side" loading="lazy" width="1240" height="1653"><h3 style="margin-top:14px">Compare</h3><p>Pick any two drivers: the gap between them, both positions through the race, and who's better at what.</p></figure>
+      <figure style="margin:0"><img src="img/ipad-strategy.jpg" alt="Strategy page: position chart for Blaney with cautions shaded, the recent pit stops with tires taken and time on pit road, and each driver's pit window" loading="lazy" width="1240" height="1653"><h3 style="margin-top:14px">Strategy</h3><p>Where my drivers ran every lap with cautions shaded, every stop with the tires taken and what it gained or lost, and who's due to pit.</p></figure>
+      <figure style="margin:0" class="track"><img src="img/ipad-track.jpg" alt="Track page: every car on the Charlotte outline placed by GPS, Blaney labeled, with the follow cards for Larson and Blaney below" loading="lazy" width="1240" height="1653"><h3 style="margin-top:14px">Track</h3><p>Every car on the real track outline, placed from its GPS. Tap a car to follow it.</p></figure>
+      <figure style="margin:0"><img src="img/ipad-compare.jpg" alt="Compare page: Larson against Blaney, the gap between them, their points, last lap, pace and tires side by side, and both positions through the race" loading="lazy" width="1240" height="1653"><h3 style="margin-top:14px">Compare</h3><p>Pick any two drivers: the gap between them, both positions through the race, and who's better at what.</p></figure>
     </div>
   </section>
 
-  <section class="lineup chapter" data-flag="green" data-l1="LAP" data-v1="183" data-e1=" /267" data-l2="TO GO" data-v2="85" data-l3="RACE" data-v3="Bank of America 400">
-    <h2>Layouts for each way the Duo opens, and for iPhone</h2>
+  <section class="f1 chapter" id="f1" data-flag="green" data-sub="Formula 1" data-l1="ON TRACK" data-v1="14" data-e1="" data-l2="FASTEST" data-v2="1:18.128" data-l3="SESSION" data-v3="Mexico City, Practice 1">
+    <div>
+      <h2>Formula 1 too</h2>
+      <p>F1 comes from F1's own live timing, which my server listens to and records like the NASCAR feeds. In practice and qualifying the tower becomes a timing sheet: best lap, gap to the fastest, laps run, and the tyre each car is on, with a dot for the cars out on track.</p>
+      <p>For races it shows the order, gaps, laps down, pit stops, tyre age and the safety car or VSC under the flag. So far I've checked it against the US Grand Prix result and a live practice in Mexico City. A race weekend will tell me the rest.</p>
+    </div>
+    <figure class="phones">
+      <img src="img/phone-f1.jpg" alt="F1 Practice 1 in Mexico City on iPhone: 14 cars on track, fastest lap 1:18.128 by Charles Leclerc, the timing sheet with best laps, gaps, laps and soft, medium and hard tyre markers" loading="lazy" width="700" height="1522">
+      <img src="img/phone-f1-standings.jpg" alt="F1 drivers' standings after the United States Grand Prix on Home: Kimi Antonelli first on 365 points, then George Russell and Lewis Hamilton" loading="lazy" width="700" height="1522">
+      <figcaption class="cap">First practice in Mexico City, replayed from my server, and the drivers' standings on Home</figcaption>
+    </figure>
+  </section>
+
+  <section class="lineup chapter" data-flag="green" data-l1="LAP" data-v1="184" data-e1=" /267" data-l2="TO GO" data-v2="84" data-l3="RACE" data-v3="Bank of America 400">
+    <h2>A layout for each way the Duo opens, and for iPhone</h2>
     <ul>
-      <li><b>Duo on its side.</b> The tower and my drivers side by side, page tabs in the strip next to the clock.</li>
-      <li><b>Duo half open.</b> The page on top, the radio deck below the fold.</li>
-      <li><b>Duo open like a book.</b> The race on the left page, details on the right.</li>
+      <li><b>Duo folded.</b> One column, with Home, the intercom, the page tabs and the radio in the strip beside the clock.</li>
+      <li><b>Duo open flat.</b> Upright it's one long column. On its side the tower gets one page and my drivers the other.</li>
+      <li><b>Duo half open like a laptop.</b> The race on top, the page tabs and the radio deck below the fold, where your thumbs are.</li>
+      <li><b>Duo open like a book.</b> The race on the left page, my drivers and head to head on the right.</li>
+      <li><b>Same places everywhere.</b> Home and the race put their controls in the same spots in every posture, and folding mid-race keeps you where you were.</li>
       <li><b>Practice and qualifying.</b> The tower turns into a timing sheet by best lap, with long-run pace.</li>
     </ul>
     <div class="row">
-      <img class="duo" src="img/duo-land-track.jpg" alt="Track page on an iPhone Duo held sideways: the oval with every car placed, Blaney and Heim labeled, beside their follow cards" loading="lazy" width="1400" height="962">
-      <img src="img/phone-race.jpg" alt="Race page on iPhone with the tab bar along the bottom" loading="lazy" width="700" height="1521">
-      <img src="img/phone-strategy.jpg" alt="Strategy page on iPhone" loading="lazy" width="700" height="1521">
+      <img class="duo" src="img/duo-book.jpg" alt="iPhone Duo half open like a book: the running order on the left page, the cards for Larson and Blaney and their head to head on the right, page tabs along the top of the right page" loading="lazy" width="1400" height="985">
+      <img src="img/duo-laptop.jpg" alt="iPhone Duo half open like a laptop: the running order on the top half, the page tabs and the radio deck on the bottom half" loading="lazy" width="900" height="1279">
+      <img src="img/phone-strategy.jpg" alt="Strategy page on iPhone: Blaney's position through the race with cautions shaded, then the recent pit stops, with the tab bar along the bottom" loading="lazy" width="700" height="1522">
     </div>
-    <p class="cap">Duo on its side, then the Race and Strategy pages on iPhone</p>
+    <p class="cap">Duo open like a book, Duo half open like a laptop, and the Strategy page on iPhone</p>
   </section>
 
-  <section class="intercom chapter" data-flag="green" data-l1="LAP" data-v1="183" data-e1=" /267" data-l2="TO GO" data-v2="85" data-l3="RACE" data-v3="Bank of America 400">
+  <section class="intercom chapter" data-flag="green" data-l1="LAP" data-v1="184" data-e1=" /267" data-l2="TO GO" data-v2="84" data-l3="RACE" data-v3="Bank of America 400">
     <div>
       <h2>Talking to the person next to you at the track</h2>
       <p>At the track, cell service is weak and the cars drown everything out. With the intercom on, two phones become a headset intercom, so you can talk over the race. If there's enough data for it, each of you still hears your own team's radio underneath.</p>
       <p>It goes phone to phone over Apple's peer-to-peer Wi-Fi, the same link AirDrop uses, so it doesn't need cell signal or a Wi-Fi network. Hold the button to talk or leave the mic open. Your radio dips while the other person talks. It works with AirPods, and if you walk out of range it finds the other phone again by itself.</p>
+      <p>The mic button is on every screen. The intercom opens over whatever you were looking at, Home or the race, and closing it puts you back exactly there.</p>
     </div>
     <figure class="pair">
       <img src="img/duo-intercom-crop.jpg" alt="The talk button on an iPhone Duo, red while this person talks" loading="lazy" width="460" height="460">
@@ -273,29 +327,31 @@ dl.cols dd { margin: 0; color: var(--soft); }
     </figure>
   </section>
 
-  <section class="how chapter" data-flag="green" data-l1="LAP" data-v1="183" data-e1=" /267" data-l2="TO GO" data-v2="85" data-l3="RACE" data-v3="Bank of America 400">
+  <section class="how chapter" data-flag="green" data-l1="LAP" data-v1="184" data-e1=" /267" data-l2="TO GO" data-v2="84" data-l3="RACE" data-v3="Bank of America 400">
     <div>
-      <h2>A PC in my house does the work</h2>
-      <p>A server at home follows NASCAR's public live timing and the team radio. It keeps a copy of each session on that machine so I can rewatch a race later, radio included. It transcribes the radio on its own GPU and sends my devices one stream, held back to match the TV. Only my devices and a few friends' connect to it. Nothing is public and nothing is sold.</p>
+      <h2>A Mac Studio in my house does the work</h2>
+      <p>A server at home follows NASCAR's public live timing and the team radio, plus the timing for ARCA and F1. It keeps a copy of each session so I can rewatch a race later, radio included, and transcribes the radio on the Mac itself, with Whisper running on Apple silicon. It sends my devices one stream, held back to match the TV. Only my devices and a few friends' connect to it. Nothing is public and nothing is sold.</p>
+      <p>It can run more than one session at once. If an F1 race and a NASCAR race overlap, each gets its own stream and its own delay, and a chip in the race header switches between them. Opening a replay on your phone starts a room of your own, with that race's radio, so it doesn't change what anyone else is watching.</p>
       <table class="sheet">
         <thead><tr><th>NUMBER</th><th>WHAT IT IS</th></tr></thead>
         <tbody>
           <tr><td class="n">17 s</td><td>The delay I set so the app lines up with my TV</td></tr>
           <tr><td class="n">~2 s</td><td>How far the timing runs behind the live race before the TV delay is added</td></tr>
+          <tr><td class="n">5</td><td>Series on Home: Cup, O'Reilly, Trucks, ARCA and F1</td></tr>
           <tr><td class="n">40+</td><td>Radio channels in a Cup race: every team, plus officials</td></tr>
         </tbody>
       </table>
     </div>
     <ol class="pipe">
-      <li>Timing and scoring <span>full refresh ~every 15 s</span></li>
+      <li>Timing and scoring <span>NASCAR, ARCA, F1</span></li>
       <li>Car telemetry and GPS <span>speed, gear, pedals</span></li>
-      <li>Team radio <span>transcribed at home</span></li>
+      <li>Team radio <span>transcribed on the Mac</span></li>
       <li>Delay buffer <span>set to match the TV</span></li>
       <li>iPad, iPhone, Duo <span>the same stream</span></li>
     </ol>
   </section>
 
-  <section class="why chapter" data-flag="green" data-l1="LAP" data-v1="183" data-e1=" /267" data-l2="TO GO" data-v2="85" data-l3="RACE" data-v3="Bank of America 400">
+  <section class="why chapter" data-flag="green" data-l1="LAP" data-v1="184" data-e1=" /267" data-l2="TO GO" data-v2="84" data-l3="RACE" data-v3="Bank of America 400">
     <h2>Why this page exists</h2>
     <p>I'm a fan, not a company. I built this for myself and a few friends to watch races with. I'd like to show it to the people at NASCAR who work on fan and digital products, hear what they think, and learn whether there's a proper way to build on official timing and radio.</p>
   </section>
@@ -314,7 +370,7 @@ dl.cols dd { margin: 0; color: var(--soft); }
     </div>
   </section>
 
-  <p class="note"><strong>About this page.</strong> Race Day is a personal, non-commercial app I built for myself and a few friends. It isn't on the App Store, isn't sold, and isn't affiliated with, endorsed by or connected to NASCAR, its teams or its sponsors. Driver, team, race and sponsor names belong to their owners and are used only to describe real races. The Race Day screenshots are real races replayed from my server through Apple's iPad, iPhone and iPhone Duo simulators: the 2026 Bank of America 400 at Charlotte and the 2026 YellaWood 500 at Talladega. The iRacing images are drawn by the real overlay code from a sample session; the other drivers' names are made up.</p>
+  <p class="note"><strong>About this page.</strong> Race Day is a personal, non-commercial app I built for myself and a few friends. It isn't on the App Store, isn't sold, and isn't affiliated with, endorsed by or connected to NASCAR, its teams or its sponsors. Driver, team, race and sponsor names belong to their owners and are used only to describe real races. The Race Day screenshots are real sessions replayed from a test copy of my server through Apple's iPad, iPhone and iPhone Duo simulators: the 2026 Bank of America 400 at Charlotte, the 2026 YellaWood 500 at Talladega and first practice for the 2026 Mexico City Grand Prix. The schedule and standings are as they stood on October 31, 2026. The iRacing images are drawn by the real overlay code from a sample session; the other drivers' names are made up.</p>
 </main>
 <script>
 (() => {
