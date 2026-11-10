@@ -58,6 +58,8 @@ h1 { font-family: var(--display); font-weight: 800; font-size: clamp(64px, 10vw,
 
 h2 { font-family: var(--body); font-weight: 700; font-size: clamp(30px, 3.8vw, 44px); line-height: 1.08; letter-spacing: -.02em; margin: 0 0 16px; text-wrap: balance; }
 h3 { font-family: var(--display); font-weight: 700; font-size: 22px; text-transform: uppercase; letter-spacing: .04em; margin: 0 0 4px; }
+.foot { font-family: var(--mono); font-size: 13px; color: var(--muted); text-align: center; padding: 8px 20px 48px; }
+.foot a { color: var(--soft); text-decoration: none; margin: 0 10px; }
 .cap { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-top: 10px; line-height: 1.5; }
 .chapter { border-top: 1px solid var(--line); scroll-margin-top: 70px; }
 
@@ -236,7 +238,7 @@ dl.cols dd { margin: 0; color: var(--soft); }
     <div class="top">
       <div>
         <h2>Home: what's on, what's next, where everyone stands</h2>
-        <p>The app opens on Home now. Across the top is a row of chips with each series' own logo: Cup, O'Reilly, Trucks, ARCA and F1. Pick one and it fills with that series' colour and everything below follows it.</p>
+        <p>The app opens on Home now. Across the top is a row of chips with each series' own logo: Cup, O'Reilly, Trucks, ARCA and F1. Pick one and it fills with that series' color and everything below follows it.</p>
         <p>The band at the top counts down to the next session. For 12 hours after a race it shows the winner instead, with a button to replay it. When something is on, it's a card at the top: one tap and you're in the race. Behind it all are light streaks, like a night race under the lights, tinted to match the chip.</p>
       </div>
       <img class="duo" src="img/duo-land-home.jpg" alt="Home on an iPhone Duo opened flat and held sideways: the Cup chip picked and filled gold, next up Cup qualifying at Martinsville in 10 hours 18 minutes, the Cup schedule on the left page and the Cup standings on the right" loading="lazy" width="1400" height="985">
@@ -372,6 +374,7 @@ dl.cols dd { margin: 0; color: var(--soft); }
 
   <p class="note"><strong>About this page.</strong> Race Day is a personal, non-commercial app I built for myself and a few friends. It isn't on the App Store, isn't sold, and isn't affiliated with, endorsed by or connected to NASCAR, its teams or its sponsors. Driver, team, race and sponsor names belong to their owners and are used only to describe real races. The Race Day screenshots are real sessions replayed from a test copy of my server through Apple's iPad, iPhone and iPhone Duo simulators: the 2026 Bank of America 400 at Charlotte, the 2026 YellaWood 500 at Talladega and first practice for the 2026 Mexico City Grand Prix. The schedule and standings are as they stood on October 31, 2026. The iRacing images are drawn by the real overlay code from a sample session; the other drivers' names are made up.</p>
 </main>
+<footer class="foot"><a href="https://joshramey.com/">More things I build: joshramey.com</a></footer>
 <script>
 (() => {
   const a = document.getElementById('clip'), b = document.getElementById('play'), icon = document.getElementById('playicon'),
